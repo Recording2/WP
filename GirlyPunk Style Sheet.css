@@ -1,0 +1,148 @@
+/* GirlyPunk Style Sheet */
+
+/*Reset Margins*/
+
+    *   {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+/* Custom Font(s) */
+
+    @font-face  {
+            font-family: kinky; /*name*/
+            src: url(KINKIE.TTF);
+                }
+
+/* General Elements */
+
+
+    h1    {
+            color: rgba(0, 255, 145, 0.8);
+            font-size: 100px;
+            
+          }
+
+    h2    {
+            font-size: 35px;
+            margin-left: 10px;
+            margin-right: 10px;
+            color: rgba(255, 255, 170, 1.0);
+            
+          }
+
+    ul.topnav {
+            display: flex;
+            list-style-type: none;
+            border-bottom: double;
+             border-top: double;
+             border-right: none;
+             border-left: none;
+            color: rgba(255, 255, 255, 1.0);
+        }
+
+    ul.prnav {
+                display: flex;
+                list-style-type: none;
+                border-bottom: double;
+                border-right: none;
+                border-left: none;
+                color: rgba(255, 255, 255, 1.0);
+                align-items: center;
+                justify-content: center;
+                margin-top: 0px;
+                padding-bottom: 10px;
+            }
+
+    body  {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, rgba(255, 0, 108, 0.8), rgba(233, 164, 255, 0.2));
+            backrgound-repeat: no-repeat;
+            background-attatchment: fixed;
+            background-size: cover;
+            font-family: kinky, "Courier New", monospace;
+          }
+
+    p     {
+            color: rgba(255, 255, 170, 0.8);
+            font-size: 50px;
+            font-family: "Cute Font", "Courier New", monospace;
+            
+          }
+
+    table {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-collapse: collapse;
+          }
+    th, td {
+            color: rgba(255, 255, 170, 1.0);
+            font-size: 35px;
+            font-family: "Cute Font", "Courier New", monospace;
+            padding: 10px;
+            border: 2px solid;
+        }
+
+
+
+/* Buttons */
+
+    ul.topnav li button {
+             background: rgba(0, 0, 0, 0);
+             color: rgba(255, 255, 255, 1.0);
+             font-size: 30px;
+             font-family: "Cute Font", "Courier New", monospace;
+             border-bottom: dashed;
+             border-top: none;
+             border-right: none;
+             border-left: none;
+             padding-right: 4px;
+             padding-left: 4px;
+             padding-bottom: 0px;
+             margin-bottom: 2px;
+             margin-left: 1px;
+             margin-right: 1px;
+            }
+
+    ul.prnav li button {
+             background: rgba(0, 0, 0, 0);
+             color: rgba(255, 255, 255, 1.0);
+             font-size: 30px;
+             font-family: "Cute Font", "Courier New", monospace;
+             border-bottom: dashed;
+             border-top: none;
+             border-right: none;
+             border-left: none;
+             padding-right: 4px;
+             padding-left: 4px;
+             padding-bottom: 0px;
+             margin-bottom: 2px;
+             margin-left: 10px;
+             margin-right: 10px;
+             text-align: center;
+             float: center;
+        }
+
+
+    .button:hover {
+            color: rgba(0, 255, 145, 0.9);
+            font-size: 35px;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 1.0);
+                  }
+
+/* Images */
+
+    .blurpass
+            {
+                opacity: 0.2;
+                filter: blur(2px);
+                pointer-events: none;
+                -webkit-mask-image: radial-gradient(circle, black 50%, transparent 80%);
+                mask-image: radial-gradient(circle, black 50%, transparent 80%);
+            }
+
+
+
