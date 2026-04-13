@@ -133,6 +133,18 @@
             text-shadow: 2px 2px 5px rgba(255, 255, 255, 1.0);
                   }
 
+    .indexbutton {
+                background: rgba(0, 0, 0, 0,);
+                color: rgab (255, 255, 255, 1.0);
+                font-family: "Cute Font", "Courier New", monospace;
+                font-size: 25px;
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                margin: auto;
+        }
+
 /* Images */
 
     .blurpass

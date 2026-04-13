@@ -19,7 +19,7 @@
     <!---------- Main Images ------------>
 <div style="position: relative; min-height: 50px; padding: 0px;">
 
-<img src="moika_face.png" class="blurpass" style="position: fixed; top: 0px; right: 0px; width: 48%; transform: translateX(100px); clip-path: circle(80%); z-index: 1;" alt="moika">
+<img src="moika_face.png" class="blurpass" style="position: absolute; top: 0px; right: 0px; width: 48%; transform: translateX(100px); clip-path: circle(80%); z-index: 1;" alt="moika">
 
 <img src="toji_hang.png" class="blurpass" style="position: absolute; top: 0px; left: 0px; width: 40%;" alt="hangji">
 
@@ -59,34 +59,27 @@
 
 <!-- Progress Report Table (Replace strings with JS variables that can be pulled from DB)-->
     
-    <table>
+    <table id="indexTable">
+    <thead>
         <tr>
             <th>Last PR</th>
             <th>Weight</th>
             <th>Current Goals</th>
             <th>Goal Progress</th>
         </tr>
-        <tr>
-            <td>5s Handstand</td>
-            <td>226lbs</td>
-            <td>1 Pull-Up</td>
-            <td>3 assisted Pull-Ups</td>
-        </tr>
-        <tr>
-            <td>3s Handstand</td>
-            <td>228lbs</td>
-            <td>10s Handstand</td>
-            <td>5s Handstand</td>
-        </tr>
-        
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
     </table>
 
     <!-- Form that needs the Database -->
-    <input type="text" id="cityName" placeholder="Enter city name">
-    <button id="addCityBtn">Add to Firebase</button>
+    <input type="text" id="cityName" placeholder="Enter city name" class="indexbutton">
+
+    <!-- TEST BUTTON ------>
+    <button id="addCityBtn" class="indexbutton">Add to Firebase</button>
 
     <!-- Your Main JS file that handles the Firebase logic -->
-    <script type="module" src="firebaseConfig.js"></script>
+    <script type="module" src="mainlogic.js"></script>
 
     
 <script>
