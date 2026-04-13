@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="GirlyPunk Style Sheet.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+    <link href='https://fonts.googleapis.com/css?family=Cute Font' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    <title>Index</title>
+
+
+
+
+    
+</head>
+<body>
+<!-------- BODY START ---------------------------------------------------------->
+<!-------- __________ ---------------------------------------------------------->
+
+    <!---------- Main Images ------------>
+<div style="position: relative; min-height: 50px; padding: 0px;">
+
+<img src="moika_face.png" class="blurpass" style="position: fixed; top: 0px; right: 0px; width: 48%; transform: translateX(100px); clip-path: circle(80%); z-index: 1;" alt="moika">
+
+<img src="toji_hang.png" class="blurpass" style="position: absolute; top: 0px; left: 0px; width: 40%;" alt="hangji">
+
+<img src="peachgirl2.webp" style="position: fixed; top: 500px; right: 20px; width: 20%;" alt="peachg">
+    
+</div>
+   <!-- Page Header and Subheader --------------> 
+    <div>
+    <h1 class="font-effect-fire" style="text-align: center; color: black;">Fitness Journal</h1>
+    <p class="font-effect-neon" style="text-align: center; font-size: 40px; color: black;">Keep Killin' It Baddie</p>
+        
+    </div>
+
+<!------- Time Scripting & Mini Header over Nav ------>
+    
+<div class="font-effect-outline">
+    <h2 style="text-align:left; display: inline-block;">Let's Rock!</h2>
+    <h2 id="current-date" style="float: right; display: inline-block;"></h2> 
+</div>
+
+<!-------Navigational Menu Buttons---->
+    
+<ul class="topnav">
+
+    <li><button class="button" onclick="window.location.href='WPPRs.html';">PR's</button></li>
+    <li><button class="button">Workout Circuit</button></li>
+    <li><button class="button">Weigh In's</button></li>
+</ul>
+
+<!--------- Main Page Area --------->
+    
+<div>
+
+    <h2 class="font-effect-emboss" style="text-align: center; color: black;">Progress Report</h2>
+    
+</div>
+
+<!-- Progress Report Table (Replace strings with JS variables that can be pulled from DB)-->
+    
+    <table>
+        <tr>
+            <th>Last PR</th>
+            <th>Weight</th>
+            <th>Current Goals</th>
+            <th>Goal Progress</th>
+        </tr>
+        <tr>
+            <td>5s Handstand</td>
+            <td>226lbs</td>
+            <td>1 Pull-Up</td>
+            <td>3 assisted Pull-Ups</td>
+        </tr>
+        <tr>
+            <td>3s Handstand</td>
+            <td>228lbs</td>
+            <td>10s Handstand</td>
+            <td>5s Handstand</td>
+        </tr>
+        
+    </table>
+
+    <!-- Form that needs the Database -->
+    <input type="text" id="cityName" placeholder="Enter city name">
+    <button id="addCityBtn">Add to Firebase</button>
+
+    <!-- Your Main JS file that handles the Firebase logic -->
+    <script type="module" src="firebaseConfig.js"></script>
+
+    
+<script>
+
+ document.getElementById("current-date").innerHTML = new Date().toLocaleDateString();
+ 
+    
+</script>
+    
+</body>
+</html>
