@@ -78,6 +78,21 @@
             justify-content: center;
             border-collapse: collapse;
           }
+
+#indexTable {
+    display: table; /* Forces it to act like a standard table */
+    width: 100%;
+}
+
+#indexTable thead, #indexTable tbody {
+    display: table-header-group; /* Standard table header behavior */
+}
+
+#indexTable tr {
+    display: table-row; /* Forces rows to stack vertically */
+}
+
+
     th, td {
             color: rgba(255, 255, 170, 1.0);
             font-size: 35px;
