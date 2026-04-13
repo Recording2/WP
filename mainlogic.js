@@ -5,7 +5,7 @@ import { db } from './firebaseConfig.js'
 //Import for the Tools
 import { collection,
         addDoc,
-        getDoc,
+        getDocs,
         query,
         orderBy,
         limit
@@ -13,23 +13,24 @@ import { collection,
 
 //Creating Const Variable for the form
 const formButton = document.getElementById('addCityBtn');
-const cityInput = document.getElementById('cityName');
+const prInput = document.getElementById('prName');
 
 //Building the form
 
 if (formButton) {
 
     formButton.addEventListener('click', async () => {
-        const cityName = cityInput.value;
-        if (!cityName) return alert('Enter a Name!');
+        const prName = prInput.value;
+        if (!prName) return alert('Enter a Record!');
 
         try {
             await addDoc(collection(db, "user_inputs"), {
                 timestamp: new Date(),
-                city: cityName 
+                precord: prName 
             });
             alert("Saved!");
-            cityInput.value = ""; 
+            prInput.value = ""; 
+            displayLatestStats();
         } catch (e) {
             console.error(e);
         }
@@ -37,7 +38,7 @@ if (formButton) {
 }
 
 async function displayLatestStats() {
-    const tableBody = document.querySelector("tableBody"); // Targets your existing table
+    const tableBody = document.getElementById("tableBody"); // Targets your existing table
     
     // 1. Create a query: Get 'user_inputs', sort by time, only take the most recent 3
     const q = query(collection(db, "user_inputs"), orderBy("timestamp", "desc"), limit(5));
@@ -46,7 +47,7 @@ async function displayLatestStats() {
         const querySnapshot = await getDocs(q);
         
         // Optional: Clear existing "static" rows if you want only DB data to show
-        // tableBody.innerHTML = `<tr><th>Date</th><th>City/Info</th><th>Status</th></tr>`;
+        tableBody.innerHTML = "";
 
         querySnapshot.forEach((doc) => {
             const data = doc.data();
@@ -56,7 +57,7 @@ async function displayLatestStats() {
             const row = `
                 <tr>
                     <td>${date}</td>
-                    <td>${data.city || 'N/A'}</td>
+                    <td>${data.precord || 'N/A'}</td>
                     <td>${data.message || 'Logged'}</td>
                     <td>Success</td>
                 </tr>`;
