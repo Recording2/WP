@@ -24,7 +24,7 @@ if (formButton) {
         if (!prName) return alert('Enter a Record!');
 
         try {
-            await addDoc(collection(db, "user_inputs"), {
+            await addDoc(collection(db, "personal_records"), {
                 timestamp: new Date(),
                 precord: prName 
             });
@@ -37,11 +37,13 @@ if (formButton) {
     });
 }
 
+
+
 async function displayLatestStats() {
     const tableBody = document.getElementById("tableBody"); // Targets your existing table
     
     // 1. Create a query: Get 'user_inputs', sort by time, only take the most recent 3
-    const q = query(collection(db, "user_inputs"), orderBy("timestamp", "desc"), limit(5));
+    const q = query(collection(db, "personal_records"), orderBy("timestamp", "desc"), limit(5));
     
     try {
         const querySnapshot = await getDocs(q);
