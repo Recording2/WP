@@ -14,6 +14,7 @@ import { collection,
 //Creating Const Variable for the form
 const formButton = document.getElementById('addCityBtn');
 const prInput = document.getElementById('prName');
+const weightInput = document.getElementById('bodyWeight');
 
 //Building the form
 
@@ -21,15 +22,19 @@ if (formButton) {
 
     formButton.addEventListener('click', async () => {
         const prName = prInput.value;
-        if (!prName) return alert('Enter a Record!');
+        const weight = weightInput.value
+        if (!weight || !prName) return alert('Fill Out Both Fields, Baddie!');
 
         try {
             await addDoc(collection(db, "personal_records"), {
                 timestamp: new Date(),
-                precord: prName 
+                precord: prName,
+                bweight: weight,
+                unit: "lbs"
             });
             alert("Saved!");
             prInput.value = ""; 
+            weightInput.value = "";
             displayLatestStats();
         } catch (e) {
             console.error(e);
@@ -60,7 +65,7 @@ async function displayLatestStats() {
                 <tr>
                     <td>${date}</td>
                     <td>${data.precord || 'N/A'}</td>
-                    <td>${data.message || 'Logged'}</td>
+                    <td>${data.bweight || 'N/A'}</td>
                     <td>Success</td>
                 </tr>`;
             
