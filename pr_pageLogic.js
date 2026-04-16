@@ -35,4 +35,38 @@ if (prSubmit) {
         }
     });
 }
+
+async function displayLatestStats() {
+    const repTBody = document.getElementById("repTBody"); // Targets your existing table
+    
+    // 1. Create a query: Get 'user_inputs', sort by time, only take the most recent 3
+    const q = query(collection(db, "prReps"), orderBy("timestamp", "desc"), limit(5));
+    
+    try {
+        const querySnapshot = await getDocs(q);
+        
+        // Optional: Clear existing "static" rows if you want only DB data to show
+        tableBody.innerHTML = "";
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const date = data.timestamp.toDate().toLocaleDateString(); // Converts Firebase timestamp to readable date
+
+            // 2. Create a new row for each entry
+            const row = `
+                <tr>
+                    <td>${date}</td>
+                    <td>${data.repName || 'N/A'}</td>
+                    <td>${data.repNum || 'N/A'}</td>
+                </tr>`;
+            
+            tableBody.innerHTML += row;
+        });
+    } catch (e) {
+        console.error("Error fetching data: ", e);
+    }
+}
+
+// 3. Run this function as soon as the page loads
+displayLatestStats();
                 
