@@ -46,7 +46,7 @@ async function displayLatestStats() {
         const querySnapshot = await getDocs(q);
         
         // Optional: Clear existing "static" rows if you want only DB data to show
-        tableBody.innerHTML = "";
+        repTBody.innerHTML = "";
 
         querySnapshot.forEach((doc) => {
             const data = doc.data();
@@ -60,7 +60,7 @@ async function displayLatestStats() {
                     <td>${data.repNum || 'N/A'}</td>
                 </tr>`;
             
-            tableBody.innerHTML += row;
+            repTBody.innerHTML += row;
         });
     } catch (e) {
         console.error("Error fetching data: ", e);
