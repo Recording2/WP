@@ -36,37 +36,37 @@ if (prSubmit) {
     });
 }
 
-async function displayLatestStats() {
-    const repTBody = document.getElementById("repTBody"); // Targets your existing table
-    
-    // 1. Create a query: Get 'user_inputs', sort by time, only take the most recent 3
-    const q = query(collection(db, "prReps"), orderBy("timestamp", "desc"), limit(5));
+// We tell the function WHICH collection and WHICH table ID to use
+async function displayCollection(collectionName, tableBodyId) {
+    const tableBody = document.getElementById(tableBodyId);
+    if (!tableBody) return;
+
+    const q = query(collection(db, collectionName), orderBy("timestamp", "desc"), limit(5));
     
     try {
         const querySnapshot = await getDocs(q);
-        
-        // Optional: Clear existing "static" rows if you want only DB data to show
-        repTBody.innerHTML = "";
+        tableBody.innerHTML = "";
 
         querySnapshot.forEach((doc) => {
             const data = doc.data();
-            const date = data.timestamp.toDate().toLocaleDateString(); // Converts Firebase timestamp to readable date
+            const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() : "No Date";
 
-            // 2. Create a new row for each entry
+            // We make the row "smart" by checking what data exists
             const row = `
                 <tr>
                     <td>${date}</td>
-                    <td>${data.repName || 'N/A'}</td>
-                    <td>${data.repNum || 'N/A'}</td>
+                    <td>${data.repName || data.exercise || 'N/A'}</td>
+                    <td>${data.repNum || data.value || 'N/A'}</td>
                 </tr>`;
             
-            repTBody.innerHTML += row;
+            tableBody.innerHTML += row;
         });
     } catch (e) {
-        console.error("Error fetching data: ", e);
+        console.error(`Error fetching ${collectionName}: `, e);
     }
 }
+// Pulls from 'prReps' collection and puts it in 'repTBody'
+displayCollection("prReps", "repTBody");
 
-// 3. Run this function as soon as the page loads
-displayLatestStats();
+
                 

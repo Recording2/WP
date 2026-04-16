@@ -86,6 +86,7 @@
             align-items: center;
             justify-content: center;
             border-collapse: collapse;
+            margin: auto;
           }
 
 
@@ -123,7 +124,7 @@
         {
             color: rgba (255, 0, 57, 1.0);
             display: table;
-            width: 100%;
+            width: 80%;
         }
 #prTable thead, #prTable tbody {
         display: table-header-group;

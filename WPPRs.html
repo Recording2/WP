@@ -47,6 +47,9 @@
             text-align: center;
             margin: auto;
               }
+    .hiddenTables {
+            display: none;
+                }
         
     </style>
 
@@ -73,15 +76,15 @@
 
 <ul class="prnav">
 
-    <li><button class="button">Reps</li>
-    <li><button class="button">Stretches</li>
+    <li><button class="button" onclick="showReps('prRepSection')">Reps</li>
+    <li><button class="button" onclick="showReps('prStretchSection')">Stretches</li>
     <li><button class="button">Times</li>
     <li><button class="button">Weight</li>
     <li><button class="button">Hell Day</li>
     
 </ul>
 
-<div>
+<div class="hiddenTables" id="prRepSection">
 
 <table id="prTable">
     <thead id="repTHead">
@@ -102,6 +105,35 @@
     
 </div>
 
+<div class="hiddenTables" id="prStretchSection">
+    <table id="stretchTable">
+        <thead id="stretchTHead">
+            <tr>
+                <th>Date</th>
+                <th>Stretch</th>
+                <th>Depth</th>
+            </tr>
+        </thead>
+        <tbody id="stretchTBody">
+        </tbody>
+    </table>
+
+</div>
+
+    
+     <script>
+         function showReps(sectionId) {
+         const sections = document.getElementsByClassName("hiddenTables");
+             for (let i = 0; i < sections.length; i++) {
+                 sections[i].style.display = "none";
+                 }
+             const tableID = document.getElementById(sectionId);
+             if (tableID) {
+                 tableID.style.display = "block";
+                 }
+             
+         }
+    </script>
      <script type="module" src="pr_pageLogic.js"></script>
 
 </body>
