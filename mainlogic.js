@@ -22,7 +22,7 @@ if (formButton) {
 
     formButton.addEventListener('click', async () => {
         const prName = prInput.value;
-        const weight = weightInput.value
+        const weight = weightInput.value;
         if (!weight || !prName) return alert('Fill Out Both Fields, Baddie!');
 
         try {
