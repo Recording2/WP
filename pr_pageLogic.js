@@ -18,21 +18,21 @@ if (prSubmit) {
     prSubmit.addEventListener('click', async () => {
         const RName = prRepName.value;
         const RNum = prRepNum.value;
-            if (!RName || !Rnum) return alert('Fill Out Both Fields, Icon!');
+            if (!RName || !RNum) return alert('Fill Out Both Fields, Icon!');
 
         try {
             await addDoc(collection(db, "prReps"), {
-                timestamp: new date(),
-                RepName: RName,
-                RepNum: RNum
+                timestamp: new Date(),
+                repName: RName,
+                repNum: Number(RNum)
                     });
-            alert('Saved!');
+            alert("Saved!");
             prRepName.value ="";
             prRepNum.value ="";
             displayLatestStats();
         } catch (e) {
             console.error(e);
         }
-        });
-    }
+    });
+}
                 
