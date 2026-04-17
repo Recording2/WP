@@ -102,5 +102,7 @@ async function displayCollection(collectionName, tableBodyId) {
 // Pulls from 'prReps' collection and puts it in 'repTBody'
 displayCollection("prReps", "repTBody");
 
+displayCollection("stretchPRs", "stretchTBody");
+
 
                 
