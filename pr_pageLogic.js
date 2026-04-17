@@ -21,7 +21,47 @@ const strBtn = document.getElementById('stretchBtn');
 const strName = document.getElementById('stretchName');
 const strNum = document.getElementById('stretchNum');
 
+//DB document writing logic
 
+    async function handleFormSubmit(btnElement, nameInput, numInput, collectionName, fieldName, fieldNum) {
+        if (!btnElement) return;
+    btnElement.addEventListener('click' async () => {
+        const valName = nameInput.value;
+        const valNum = numIput.value;
+
+        if (!valName || !valNum) return alert('Fill Out Both Fields, Icon!');
+
+        try {
+                await addDoc(collection(db, collectionName), {
+                    timestamp: new Date(),
+                    [fieldName]: valName,
+                    [fieldNum]: valNum
+                        });
+            alert('Saved!');
+            nameInput.value = "";
+            numInput.value = "";
+            displayCollection(collectionName, getTableId(collectionName));
+            }
+        catch (e) {
+            console.error('Error saving to ${collectionName}:', e);
+            }
+        });
+    }
+
+
+// Helper to match collection to table ID
+function getTableId(col) {
+    const mapping = { "prReps": "repTBody", "stretchPRs": "stretchTBody" };
+    return mapping[col];
+}
+
+// Setup for Personal Records
+handleFormSubmit(prSubmit, prRepName, prRepNum, "prReps", "repName", "repNum");
+
+// Setup for Stretches
+handleFormSubmit(strBtn, strName, strNum, "stretchPRs", "stretchName", "stretchNum");
+
+/*
 //PR DB pushing logic
 if (prSubmit) {
 
@@ -69,6 +109,7 @@ if (strBtn) {
         }
     });
 }
+*/
 
 // We tell the function WHICH collection and WHICH table ID to use
 async function displayCollection(collectionName, tableBodyId) {
