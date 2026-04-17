@@ -9,10 +9,20 @@ import { collection,
         limit
         } from 'https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore-lite.js';
 
+//Buttons and Input Variables -------------
+
+//Personal Record Const's
 const prSubmit = document.getElementById('RepNameBtn');
 const prRepName = document.getElementById('RepName');
 const prRepNum = document.getElementById('RepNum');
 
+//StretchPR Consts
+const strBtn = document.getElementById('stretchBtn');
+const strName = document.getElementById('stretchName');
+const strNum = document.getElementById('stretchNum');
+
+
+//PR DB pushing logic
 if (prSubmit) {
 
     prSubmit.addEventListener('click', async () => {
@@ -29,6 +39,30 @@ if (prSubmit) {
             alert("Saved!");
             prRepName.value ="";
             prRepNum.value ="";
+            displayLatestStats();
+        } catch (e) {
+            console.error(e);
+        }
+    });
+}
+
+//Stretch DB Push Logic
+if (strBtn) {
+
+    strBtn.addEventListener('click', async () => {
+        const StrName = strName.value;
+        const StrNum = strNum.value;
+            if (!StrName || !StrNum) return alert('Fill Out Both Fields, Icon!');
+
+        try {
+            await addDoc(collection(db, "stretchPRs"), {
+                timestamp: new Date(),
+                stretchName: StrName,
+                stretchNum: Number(StrNum)
+                    });
+            alert("Saved!");
+            strName.value ="";
+            strNum.value ="";
             displayLatestStats();
         } catch (e) {
             console.error(e);

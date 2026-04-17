@@ -84,6 +84,8 @@
     
 </ul>
 
+    <!--REP SECTION---------------------------->
+
 <div class="hiddenTables" id="prRepSection">
 
 <table id="prTable">
@@ -105,21 +107,28 @@
     
 </div>
 
+<!---------------STRETCH SECTION------------------------------>
+    
 <div class="hiddenTables" id="prStretchSection">
     <table id="stretchTable">
         <thead id="stretchTHead">
             <tr>
                 <th>Date</th>
                 <th>Stretch</th>
-                <th>Depth</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody id="stretchTBody">
         </tbody>
     </table>
+    <input type="text" id="stretchName" placeholder="Stretch" class="inputPR">
+    <input type="number" id="stretchNum" placeholder="Time" class="inputPR">
+    <button id="stretchBtn" class="indexbutton">Submit</button>
 
 </div>
 
+
+    <!----------SCRIPTS----------->
     
      <script>
          function showReps(sectionId) {
