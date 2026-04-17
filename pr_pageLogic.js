@@ -89,8 +89,8 @@ async function displayCollection(collectionName, tableBodyId) {
             const row = `
                 <tr>
                     <td>${date}</td>
-                    <td>${data.repName || data.exercise || 'N/A'}</td>
-                    <td>${data.repNum || data.value || 'N/A'}</td>
+                    <td>${data.repName || data.stretchName || 'N/A'}</td>
+                    <td>${data.repNum || data.stretchNum || 'N/A'}</td>
                 </tr>`;
             
             tableBody.innerHTML += row;
