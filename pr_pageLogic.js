@@ -21,13 +21,50 @@ const strBtn = document.getElementById('stretchBtn');
 const strName = document.getElementById('stretchName');
 const strNum = document.getElementById('stretchNum');
 
+
+// We tell the function WHICH collection and WHICH table ID to use
+async function displayCollection(collectionName, tableBodyId) {
+    const tableBody = document.getElementById(tableBodyId);
+    if (!tableBody) return;
+
+    const q = query(collection(db, collectionName), orderBy("timestamp", "desc"), limit(5));
+    
+    try {
+        const querySnapshot = await getDocs(q);
+        tableBody.innerHTML = "";
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() : "No Date";
+
+            // We make the row "smart" by checking what data exists
+            const row = `
+                <tr>
+                    <td>${date}</td>
+                    <td>${data.repName || data.stretchName || 'N/A'}</td>
+                    <td>${data.repNum || data.stretchNum || 'N/A'}</td>
+                </tr>`;
+            
+            tableBody.innerHTML += row;
+        });
+    } catch (e) {
+        console.error(`Error fetching ${collectionName}: `, e);
+    }
+}
+// Pulls from 'prReps' collection and puts it in 'repTBody'
+displayCollection("prReps", "repTBody");
+
+displayCollection("stretchPRs", "stretchTBody");
+
+
+
 //DB document writing logic
 
     async function handleFormSubmit(btnElement, nameInput, numInput, collectionName, fieldName, fieldNum) {
         if (!btnElement) return;
-    btnElement.addEventListener('click' async () => {
+    btnElement.addEventListener('click', async () => {
         const valName = nameInput.value;
-        const valNum = numIput.value;
+        const valNum = numInput.value;
 
         if (!valName || !valNum) return alert('Fill Out Both Fields, Icon!');
 
@@ -35,7 +72,7 @@ const strNum = document.getElementById('stretchNum');
                 await addDoc(collection(db, collectionName), {
                     timestamp: new Date(),
                     [fieldName]: valName,
-                    [fieldNum]: valNum
+                    [fieldNum]: Number(valNum)
                         });
             alert('Saved!');
             nameInput.value = "";
@@ -43,7 +80,7 @@ const strNum = document.getElementById('stretchNum');
             displayCollection(collectionName, getTableId(collectionName));
             }
         catch (e) {
-            console.error('Error saving to ${collectionName}:', e);
+            console.error(`Error saving to ${collectionName}:`, e);
             }
         });
     }
@@ -111,39 +148,7 @@ if (strBtn) {
 }
 */
 
-// We tell the function WHICH collection and WHICH table ID to use
-async function displayCollection(collectionName, tableBodyId) {
-    const tableBody = document.getElementById(tableBodyId);
-    if (!tableBody) return;
 
-    const q = query(collection(db, collectionName), orderBy("timestamp", "desc"), limit(5));
-    
-    try {
-        const querySnapshot = await getDocs(q);
-        tableBody.innerHTML = "";
-
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() : "No Date";
-
-            // We make the row "smart" by checking what data exists
-            const row = `
-                <tr>
-                    <td>${date}</td>
-                    <td>${data.repName || data.stretchName || 'N/A'}</td>
-                    <td>${data.repNum || data.stretchNum || 'N/A'}</td>
-                </tr>`;
-            
-            tableBody.innerHTML += row;
-        });
-    } catch (e) {
-        console.error(`Error fetching ${collectionName}: `, e);
-    }
-}
-// Pulls from 'prReps' collection and puts it in 'repTBody'
-displayCollection("prReps", "repTBody");
-
-displayCollection("stretchPRs", "stretchTBody");
 
 
                 
