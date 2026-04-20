@@ -21,6 +21,12 @@ const strBtn = document.getElementById('stretchBtn');
 const strName = document.getElementById('stretchName');
 const strNum = document.getElementById('stretchNum');
 
+//Time Table Consts
+
+const tmBtn = document.getElementById('timeBtn');
+const tmName = document.getElementById('timeName');
+const tmNum = document.getElementById('timeNum');
+
 
 // We tell the function WHICH collection and WHICH table ID to use
 async function displayCollection(collectionName, tableBodyId) {
@@ -41,8 +47,8 @@ async function displayCollection(collectionName, tableBodyId) {
             const row = `
                 <tr>
                     <td>${date}</td>
-                    <td>${data.repName || data.stretchName || 'N/A'}</td>
-                    <td>${data.repNum || data.stretchNum || 'N/A'}</td>
+                    <td>${data.repName || data.stretchName || data.timeName || 'N/A'}</td>
+                    <td>${data.repNum || data.stretchNum || data.timeNum || 'N/A'}</td>
                 </tr>`;
             
             tableBody.innerHTML += row;
@@ -55,6 +61,8 @@ async function displayCollection(collectionName, tableBodyId) {
 displayCollection("prReps", "repTBody");
 
 displayCollection("stretchPRs", "stretchTBody");
+
+displayCollection("timePRs", "timeTBody");
 
 
 
@@ -98,55 +106,9 @@ handleFormSubmit(prSubmit, prRepName, prRepNum, "prReps", "repName", "repNum");
 // Setup for Stretches
 handleFormSubmit(strBtn, strName, strNum, "stretchPRs", "stretchName", "stretchNum");
 
-/*
-//PR DB pushing logic
-if (prSubmit) {
+// Setup for Times
+handleFormSubmit(tmBtn, tmName, tmNum, "timePRs", "timeName", "timeNum");
 
-    prSubmit.addEventListener('click', async () => {
-        const RName = prRepName.value;
-        const RNum = prRepNum.value;
-            if (!RName || !RNum) return alert('Fill Out Both Fields, Icon!');
-
-        try {
-            await addDoc(collection(db, "prReps"), {
-                timestamp: new Date(),
-                repName: RName,
-                repNum: Number(RNum)
-                    });
-            alert("Saved!");
-            prRepName.value ="";
-            prRepNum.value ="";
-            displayLatestStats();
-        } catch (e) {
-            console.error(e);
-        }
-    });
-}
-
-//Stretch DB Push Logic
-if (strBtn) {
-
-    strBtn.addEventListener('click', async () => {
-        const StrName = strName.value;
-        const StrNum = strNum.value;
-            if (!StrName || !StrNum) return alert('Fill Out Both Fields, Icon!');
-
-        try {
-            await addDoc(collection(db, "stretchPRs"), {
-                timestamp: new Date(),
-                stretchName: StrName,
-                stretchNum: Number(StrNum)
-                    });
-            alert("Saved!");
-            strName.value ="";
-            strNum.value ="";
-            displayLatestStats();
-        } catch (e) {
-            console.error(e);
-        }
-    });
-}
-*/
 
 
 

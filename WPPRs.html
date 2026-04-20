@@ -91,7 +91,7 @@
 
     <li><button class="button" onclick="showReps('prRepSection')">Reps</li>
     <li><button class="button" onclick="showReps('prStretchSection')">Stretches</li>
-    <li><button class="button">Times</li>
+    <li><button class="button" onclick="showReps('prTimeSection')">Times</li>
     <li><button class="button">Weight</li>
     <li><button class="button">Hell Day</li>
     
@@ -128,7 +128,7 @@
             <tr>
                 <th>Date</th>
                 <th>Stretch</th>
-                <th>Time</th>
+                <th>Time in Seconds</th>
             </tr>
         </thead>
         <tbody id="stretchTBody">
@@ -138,6 +138,28 @@
     <input type="number" id="stretchNum" placeholder="Time" class="inputPR">
     <button id="stretchBtn" class="indexbutton">Submit</button>
 
+</div>
+
+<!-------------TIME SECTION----------------------------------->
+<div class="hiddenTables" id="prTimeSection">
+    <table id="timeTable">
+        <thead id="timeTHead">
+            <tr>
+                <th>Date</th>
+                <th>Excersize</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="timeTBody">
+        </tbody>    
+    </table>
+
+    <input type="text" id="timeName" placeholder="Name" class="inputPR">
+    <input type="number" id="timeNum" placeholder="Seconds" class="inputPR">
+    <button id="timeBtn" class="indexbutton">submit</button>
+
+
+    
 </div>
 
 
