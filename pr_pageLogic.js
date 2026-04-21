@@ -27,6 +27,10 @@ const tmBtn = document.getElementById('timeBtn');
 const tmName = document.getElementById('timeName');
 const tmNum = document.getElementById('timeNum');
 
+//Weight Table Consts
+const lbBtn = document.getElementById('weightBtn');
+const lbName = document.getElementById('weightName');
+const lbNum = document.getElementById('weightNum');
 
 // We tell the function WHICH collection and WHICH table ID to use
 async function displayCollection(collectionName, tableBodyId) {
@@ -47,8 +51,8 @@ async function displayCollection(collectionName, tableBodyId) {
             const row = `
                 <tr>
                     <td>${date}</td>
-                    <td>${data.repName || data.stretchName || data.timeName || 'N/A'}</td>
-                    <td>${data.repNum || data.stretchNum || data.timeNum || 'N/A'}</td>
+                    <td>${data.repName || data.stretchName || data.timeName || data.weightName || 'N/A'}</td>
+                    <td>${data.repNum || data.stretchNum || data.timeNum || data.weightNum || 'N/A'}</td>
                 </tr>`;
             
             tableBody.innerHTML += row;
@@ -64,7 +68,7 @@ displayCollection("stretchPRs", "stretchTBody");
 
 displayCollection("timePRs", "timeTBody");
 
-
+displayCollection("weightPRs", "weightTBody");
 
 //DB document writing logic
 
@@ -109,8 +113,8 @@ handleFormSubmit(strBtn, strName, strNum, "stretchPRs", "stretchName", "stretchN
 // Setup for Times
 handleFormSubmit(tmBtn, tmName, tmNum, "timePRs", "timeName", "timeNum");
 
-
-
+//Setup for Weight
+handleFormSubmit(lbBtn, lbName, lbNum, "weightPRs", "weightName", "weightNum");
 
 
                 

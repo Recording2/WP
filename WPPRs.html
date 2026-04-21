@@ -75,6 +75,18 @@
     #timeTable tr {
         display: table-row;
         }
+   #weightTable
+        {
+            color: rgba (255, 0, 57, 1.0);
+            display: table;
+            width: 80%;
+        }
+    #weightTable thead, #weightTable tbody {
+        display: table-header-group;
+        }
+    #weightTable tr {
+        display: table-row;
+        }
         
     </style>
 
@@ -169,11 +181,26 @@
     <input type="text" id="timeName" placeholder="Name" class="inputPR">
     <input type="number" id="timeNum" placeholder="Seconds" class="inputPR">
     <button id="timeBtn" class="indexbutton">submit</button>
-
-
-    
 </div>
 
+<!---------------WEIGHT SECTION------------------------------->
+<div class="hiddenTables" id="prWeightSection">
+    <table id="weightTable">
+        <thead id="weightTHead">
+            <tr>
+                <th>Date</th>
+                <th>Metric</th>
+                <th>Number</th>
+            </tr>
+        </thead>
+        <tbody id="weightTBody">
+        </tbody>
+    </table>
+
+    <input type="text" id="weightName" placeholder="Metric/Unit" class="inputPR">
+    <input type="number" id="weightNum" placeholder="Number" class="inputPR">
+    <button id="weightBtn" class="indexbutton">submit</button>
+</div>
 
     <!----------SCRIPTS----------->
     
